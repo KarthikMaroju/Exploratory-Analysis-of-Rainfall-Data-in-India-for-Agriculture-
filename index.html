@@ -1,56 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Rainfall Analysis Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rainfall Analysis Dashboard</title>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Chart.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-    <header>
-        <div class="logo">Rainfall Analytics</div>
-        <button id="themeToggle">🌙</button>
-    </header>
+<header>
+    <div class="logo">Rainfall Analytics</div>
+    <button id="themeToggle">🌙</button>
+</header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Exploratory Analysis of Rainfall Data in India</h1>
-            <p>Data-driven insights for agricultural planning and climate impact assessment.</p>
-            <button class="btn-primary">View Insights</button>
-        </div>
-    </section>
+<section class="hero">
+    <h1>Exploratory Analysis of Rainfall Data in India</h1>
+    <p>Enter monthly rainfall data and visualize instantly.</p>
+</section>
 
-    <section class="stats">
-        <div class="card">
-            <h3>Average Annual Rainfall</h3>
-            <p>1083 mm</p>
-        </div>
-        <div class="card">
-            <h3>Highest Rainfall State</h3>
-            <p>Meghalaya</p>
-        </div>
-        <div class="card">
-            <h3>Lowest Rainfall State</h3>
-            <p>Rajasthan</p>
-        </div>
-    </section>
+<section class="input-section">
+    <h2>Add Monthly Rainfall</h2>
 
-    <section class="chart-section">
-        <h2>Monthly Rainfall Trend</h2>
-        <canvas id="rainfallChart"></canvas>
-    </section>
+    <select id="month">
+        <option value="">Select Month</option>
+        <option>Jan</option><option>Feb</option><option>Mar</option>
+        <option>Apr</option><option>May</option><option>Jun</option>
+        <option>Jul</option><option>Aug</option><option>Sep</option>
+        <option>Oct</option><option>Nov</option><option>Dec</option>
+    </select>
 
-    <footer>
-        <p>© 2026 Rainfall Analytics | Designed by Karthik</p>
-    </footer>
+    <input type="number" id="rainfallValue" placeholder="Rainfall in mm">
+
+    <button onclick="addRainfall()">Add Data</button>
+</section>
+
+<section class="chart-section">
+    <h2>Monthly Rainfall Trend</h2>
+    <canvas id="rainfallChart"></canvas>
+</section>
+
+<footer>
+    <p>© 2026 Rainfall Analytics | Designed by Karthik</p>
+</footer>
 
 <script src="js/script.js"></script>
 </body>
