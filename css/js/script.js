@@ -1,33 +1,45 @@
-// Dark Mode Toggle
 const toggleBtn = document.getElementById("themeToggle");
-
 toggleBtn.addEventListener("click", () => {
     document.body.classList.toggle("dark");
 });
 
-// Rainfall Chart
+let rainfallData = JSON.parse(localStorage.getItem("rainfallData")) || {};
+
 const ctx = document.getElementById('rainfallChart').getContext('2d');
 
-const rainfallChart = new Chart(ctx, {
-    type: 'line',
+let chart = new Chart(ctx, {
+    type: 'bar',
     data: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
-                 "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: [],
         datasets: [{
             label: 'Rainfall (mm)',
-            data: [20, 25, 30, 45, 80, 200, 300, 280, 220, 100, 40, 25],
-            borderColor: '#2e7d32',
-            backgroundColor: 'rgba(46,125,50,0.2)',
-            fill: true,
-            tension: 0.4
+            data: [],
+            backgroundColor: '#2e7d32'
         }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                display: true
-            }
-        }
     }
 });
+
+function updateChart() {
+    chart.data.labels = Object.keys(rainfallData);
+    chart.data.datasets[0].data = Object.values(rainfallData);
+    chart.update();
+}
+
+function addRainfall() {
+    const month = document.getElementById("month").value;
+    const value = document.getElementById("rainfallValue").value;
+
+    if (month === "" || value === "") {
+        alert("Please enter all fields");
+        return;
+    }
+
+    rainfallData[month] = Number(value);
+    localStorage.setItem("rainfallData", JSON.stringify(rainfallData));
+
+    updateChart();
+
+    document.getElementById("rainfallValue").value = "";
+}
+
+updateChart();
